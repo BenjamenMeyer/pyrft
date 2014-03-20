@@ -1,0 +1,3 @@
+"""
+PyRTF Files module
+"""
