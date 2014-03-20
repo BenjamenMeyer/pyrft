@@ -1,0 +1,27 @@
+#!/bin/bash
+# Bash /etc/init.d script for pyrftd
+
+COMMAND=""
+
+function printHelp()
+	{
+	local PROGRAM_NAME="${1}"
+	echo "usage: ${PROGRAM_NAME} {start|status|stop|reload|restart}"
+	echo
+	}
+
+case "${COMMAND}" in
+	"start")
+		;;
+	"status")
+		;;
+	"stop")
+		;;
+	"reload")
+		;;
+	"restart")
+		;;
+	*)
+		printHelp ${0}
+		;;
+esac

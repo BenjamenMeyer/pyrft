@@ -1,12 +1,18 @@
 #!/usr/bin/env python
 
 from distutils.core import setup
+import setuptools
 
-with open('README.rst') as ld_input:
-	long_description = ld_input.read()
+long_description = """PyRTF is an FTP replacement with the ability to do fast,
+reliable file transfer operations. It may be used as an
+API embeddable into other applications, or with its own
+client (pyrtf) and server (pyrftd) applications, both
+to be provided as at least refernce applications.
+"""
 
 #TODO: Add url = github repository
 #TODO: Add download_url = github repository
+#TODO: Add install_requires=[]
 setup(name='PyRFT',
       version='1.0',
 	  author='Benjamen R. Meyer',
@@ -31,6 +37,18 @@ setup(name='PyRFT',
 		'Topic :: Programming :: Python',
 		'Topic :: API :: JSON'
 		],
-	  platforms=[
-		'linux',
+	scripts=[
+		'bin/pyrtf',
+		'bin/pyrtf-config',
+		'sbin/pyrtfd',
+		'sbin/pyrtfd-config',
+		],
+	packages=['pyrtf'],
+	package_dir={'pyrtf': 'pyrft'},
+	data_files=[
+		('scripts', ['scripts/pyrftd'] ),
+		('config', ['configs/user.conf', 'configs/system.conf'])
+		],
+	setup_requires=['nose>=1.0']
+	)
 
