@@ -1,3 +1,3 @@
 """
-PyRTF Files module
+PyRTF File Module
 """
