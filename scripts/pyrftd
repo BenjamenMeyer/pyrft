@@ -1,7 +1,7 @@
 #!/bin/bash
 # Bash /etc/init.d script for pyrftd
 
-COMMAND=""
+COMMAND="${1}"
 
 function printHelp()
 	{
@@ -12,14 +12,24 @@ function printHelp()
 
 case "${COMMAND}" in
 	"start")
+		echo "Start PyRTFd"
 		;;
 	"status")
+		echo "PyRTFd Status"
 		;;
 	"stop")
+		echo "Stop PyRTFd"
 		;;
 	"reload")
+		echo "PyRTFd Reload Configuration"
 		;;
 	"restart")
+		echo "Restart PyRFTd"
+		${0} stop
+		if [ $? -eq 0 ]; then
+			sleep 1
+			${0} start
+		fi
 		;;
 	*)
 		printHelp ${0}

@@ -3,3 +3,6 @@
 .tox
 *.egg-info
 *.egg
+env
+.coverage
+test1gb.dat

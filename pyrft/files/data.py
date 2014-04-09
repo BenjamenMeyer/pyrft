@@ -22,8 +22,7 @@ class FileData(object):
 	File Data Information
 	"""
 
-
-	def state_at(state_level):
+	def state_at(state_level):  # pragma: nocover
 		"""
 		Decorator to ensure the class has the correct state before continuing
 		"""
@@ -37,7 +36,7 @@ class FileData(object):
 		return state_at_fn
 	
 	
-	def state_raise(raiseState=True, lowerState=True):
+	def state_raise(raiseState=True, lowerState=True):  # pragma: nocover
 		"""
 		Decorator to raise/lower the state for the duration of the call
 		"""
@@ -69,8 +68,11 @@ class FileData(object):
 		self.metadata = None
 	
 	
-	def __update_fqfn(self):
-		self.fqfn = '{0:}/{1:}'.format(self.path, self.file_name)
+	def __update_fqfn(self):  # pragma: nocover
+		if self.path.endswith('/'):
+			self.fqfn = '{0:}{1:}'.format(self.path, self.file_name)
+		else:
+			self.fqfn = '{0:}/{1:}'.format(self.path, self.file_name)
 
 	
 	
@@ -168,13 +170,19 @@ class FileData(object):
 	def get_file_block(self, blockid=None):
 		pass
 	
+	@state_at(state_level=0)
+	def getMetaData(self):
+		return self.metadata
+	
 
+"""
 if __name__ == '__main__':
 	f = FileData('/home/bmeyer/rft-test', 'test1gb.dat', bound_size=1024*1024)
 	f.generate_file_metadata()
 	with open('test.out', 'w') as out:
 		import pprint
-		pprint.pprint(f.metadata, stream=out)
+		pprint.pprint(f.getMetaData(), stream=out)
 		import json
-		print(json.dumps(f.metadata),file=out)
+		print(json.dumps(f.getMetaData()),file=out)
 	f.generate_file_metadata(4)
+"""
