@@ -11,6 +11,11 @@ to do fast, reliable file transfer operations. PyRTF provides several interfaces
 
 A GUI interface is not presently planned.
 
+License
+-------
+
+PyRFT is licensed under the Apache 2.0 License.
+
 Design
 ------
 
