@@ -19,7 +19,7 @@ Making Changes
 - Create a new branch based master (aka feature branch)
 	- branch names should start with "bugfix", "feature", "enhancement", etc.
 - Make your changes
-	- Commits should use a format of "(<branch name>) <message>".
+	- Commits should use a format of "(branch name) message".
 	- Please keep from rebasing. If you must, use the git autorebase functionality.
 - Add unit tests for your code if at all possible
 - Run _all_ the tests to ensure nothing was accidentally broken.
