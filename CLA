@@ -1,0 +1,144 @@
+PyRFT
+Contributor license Agreement("Agreement") V1.0
+
+In order to clarify the intellectual propertly license granted
+with Contributions from any person or entity, PyRFT must
+have a Contributor Licnese Agreement ("CLA") agreed to by each
+Contributor. The express purpose of this license is for the
+protection of both the Contributor, PyRFT, and its users;
+it does not in any way change your rights to use your Contributions
+for any other purpose.
+
+Either individuals or business entities, cindlugin without limitation,
+all employees or agents acting on behalf of such entity ("an Entity"),
+may submit Contributions to PyRFT under this Agreement. By submitting
+the Agreement in written or electronic form to PyRFT you represent
+that you have the requisite Authority to bind such Entity to this
+Agreement as defined below.
+
+Please read this document carefully before agreeing to it, and print
+a copy for your own records and the records of any Entity which you
+represent in signing this Agreement.
+
+1. Definitions
+
+"You" (or "Your") shall mean the copyright owner or Entity authorized
+by the copyright owner that is making this Agreement with PyRFT. For
+Entities, the Entity making a Contributio and all other Entities that
+control, are controlled by, or are under common control with the
+Entity are considered to be a single Contributor. For the purposes of
+this definition, "control" means (i) the power, direct or indirect,
+to case the direction or management of such entity, whether by contract
+or otherwise, or (ii) ownership of fifty person (50%) or more of the
+outstanding shares, or (iii) beneficial ownership of the Entity.
+
+"Contribution" shall mean any original work of authorship, including
+any modifications or additions to an existing work, that is or has
+been intentionally submitted by You to PyRFT for inclusion in, or
+documetation of, any of the products owned or managed by PyRFT (the
+"Work"). For the purposes of tihs defintion, "submitted" means any
+form of electronic, verbal, or written communication sent to PyRFT
+or its representatives, including but not limited to communication on
+electronic mailing lists, source code control systems, and issue
+tracking systems that are managed by, or on behalf of, PyRFT fo
+the purpose of discussing and improving the Work, but excluding
+communications that is conspicuously marked or otherwise designated
+in writing by You as "Not a Contribution".
+
+"Open Source License" shall mean any license approved by the
+Open Source Initiative (opensource.org) that meets the published
+and community approved Open Source Definition.
+
+"Chosen Open Source License" shall mean any Open Source License
+which PyRFT has decided to use.
+
+"Licensed" shall mean the active Open Source License a Contribution
+is under.
+
+2. Grant of Copyright License
+
+Subject to the terms and conditions of this Agreement, You hereby grant to
+PyRTF and to recipients of software distributed by PyRFT a perpetual,
+worldwide, non-exclusive, no-charge, royalty-free, irrevocable copyright
+license to reproduce, prepare derivative works of, publically display,
+publically perform, sublicense, and distribute Your Contributions and
+such derivative works under the Chosen Open Source License at the time
+of the grant.
+
+You agree that You will answer either in the affirmative or negative
+should PyRFT contact you regarding changing the Chosen Open Source License
+under which Your Contributions are to be Licensed.
+
+3. Grant of Patent License
+
+Subject to the terms and conditios of this Agreement, You hereby grant to
+PyRFT and to recipients of software distributed by PyRFT a perpectual,
+worldwide, non-exclusive, no-charge, royalty-free, irrevocalbe (except as
+stated within this section) patent license to make, have made, use,
+offer to sell, sell, import, and otherwise transfer the Work, where such 
+license applies only to those patent claims licensable by You that are
+necessarily infringed by Your Contribution(s) alone or by combination of
+Your Contribution(s) with the Work to which such Contribution(s) was
+submitted. Your furthermore agree to notify PyRFT of any patents that
+you know or come to know are likely infringed by the Contribution and/or
+are not licensable by You. if any entity institutes patent litigation
+against You or any entity (ncluding a cross-claim or counterclaim in a
+lawsuit) alleging that your Contribution, or the Work to which you
+have contributed, constitutes direct or contributory patent infringement,
+then any patent licenses granted to that entity under this Agreement
+for that Contribution or Work shall terminate as  of the date such
+litigation is filed.
+
+4. Representations
+
+a. If You are entering this Agreement as an individual, You represent that
+You are legally entitled to grand the above license. If Your employer(s) has
+rights to intellectual proeprty that You create, such as your Contributions,
+You represent that You have received permission to make such Contributions on
+behalf of that employer, that Your employer has waived such  rights for Your
+Contributions to PyRFT, or that Your employer has executed a separate
+Corporate CLA with PyRFT.
+
+b. If you are entering this Agreement on behalf of an Entity, You represent that
+You are legally entitled to grant the above license. You represent further that
+each employee of the Entity that submits Contributions is authorized to submit
+such Contributios on behalf of the Entity.
+
+5. you  represent that each of your Contriubtions is Y our original creation
+(see sectio 7 for submissios on behalf of others). You represent that Your
+Contribution submissions include complete details of any third-party license or
+other restriction(s) (including, but not limited to, related patents and
+trademarks) of which You are personally aware and which are associated with
+any part of Your Contributions.
+
+6. You are not excpected to provide support for Your Contributions, except
+to the extent You desire to provide support. you may provide support for
+free, for a fee, or not at all. Unless required by applicable law or agreed
+to in  writing, You provide your Contributios on an "AS IS" BASIS, WITHOUT
+WARRANTIES OR CONDITIONS OF ANY KIND, either epxress or implied, including,
+without limitation, any warranties or conditions of TITLE, NON-INFRINGMENT,
+MERCHANTABILITY, or FITNESS FOR A PARTICULAR PURPOSE.
+
+7. Should You wish to submit work that is not Your original creation,
+You may submit it to PyRFT separately from any Contribution, identifying
+the complete details of its source and of any license or other restrictions
+(including, but not limited to, related patents, trademarks, or and
+license agreements) of which You are personally aware, and conspicuously
+marking the work as "Submitted on behalf of a third party; [named here]".
+
+8. You agree to notify PyRFT of any facts or circumstances of which you
+become aware that would make these representations inaccurate in any respect.
+
+Submissions of this agreement are acceptable via electronic or written forms.
+Electronic forms may be through an approved website system, or via a
+PDF scan or fax of a written form. Contact PyRFT concerning submissions of
+written forms in any other manner.
+
+If submitting in written form, fill out the following:
+
+Name (Printed:_____________________________________________
+
+       Signed:___________________________
+
+         Date:___________________________
+
