@@ -19,84 +19,42 @@ limitations under the License.
 import socketserver
 import threading
 
+from .comms import PyRFTConnection, PyRFTConnectionInvalidState
+from .config import PyRFTConfig
 
-class PyRFT_TCPServer_Handler(socketserver.StreamRequestHandler):
-	"""
-	"""
-
-	def handle(self):
-		"""
-
-		"""
-		pass
-
-	def write_message(self, message):
-		"""
-		"""
-		pass
-
-	def read_message(self):
-		"""
-		"""
-		pass
-
-	def client_loop(self):
-		"""
-		"""
-		pass
-
-class __threaded_tcp_server(socketserver.ThreadingMixIn, socketserver.TCpServer):
+class PyRFTServerInvalidState(PyRFTConnectionInvalidState):
 	pass
 
 
-class PyRFT_Server_InvalidState(Exception):
+class __threaded_tcp_server(socketserver.ThreadingMixIn, socketserver.TCPServer):
 	pass
 
 
-class PyRFTConnection(object):
-	"""
-	Basic Connection Object for Client and Server
 
-	For derived clients, this contains the server information to connect to.
-	For derived servers, this contains the server information to bind to.
+
+class PyRFTServerConfig(PyRFTConfig):
+	"""
 	"""
 
-	def __init__(self, host, port):
-		"""
-		Initializer for the connection
-		"""
-		self.__host = host
-		self.__port = port
+	# Maximum Number of Command Connections
+	MAX_CONNECTIONS = 'maximumConnections'
+	MAX_CONNECTIONS_DEFAULT = 10
 
-	@property
-	def host(self):
-		"""
-		Host Address for the connection
-		"""
-		return self.__host
+	# Maximum Available Bandwidth for All Clients
+	MAX_AVAILABLE_BANDWIDTH = 'maximumAvailableBandwidth'
+	MAX_AVAILABLE_BANDWIDTH_DEFAULT = PyRFTConfig.UNLIMITED
+	
+	def __init__(self):
+		super().__init__()
+		self.__setattr__(PyRFTServerConfig.MAX_CONNECTIONS, PyRFTServerConfig.MAX_CONNECTIONS_DEFAULT)
+		self.__setattr__(PyRFTServerConfig.MAX_AVAILABLE_BANDWIDTH, PyRFTServerConfig.MAX_AVAILABLE_BANDWIDTH_DEFAULT)
+	
+	def negotiate(self, other):
+		settle = super().negotiate(other)
+		return settle
 
-	@host.setter
-	def host(self, host_address):
-		if not self.isRunning:
-			self.__host = host_address
-		else:
-			raise PyRFT_Server_InvalidState('Server is running.')
 
-	@property
-	def port(self):
-		"""
-		Port for the connection
-		"""
-		return self.__port
-
-	@port.setter
-	def port(self, port_number):
-		if not self.isRunning:
-			self.__port = port_number
-		else:
-			raise PyRFT_Server_InvalidState('Server is running.')
-
-class PyRFT_Server(PyRFTConnection):
+class PyRFTServer(PyRFTConnection):
 	"""
 	PyRFT Server Interface
 
@@ -106,12 +64,13 @@ class PyRFT_Server(PyRFTConnection):
 	handled in its own thread.
 	"""
 
-	def __init__(self, host='localhost', port='9000'):
+	def __init__(self, host, port, config=PyRFTServerConfig):
 		"""
 		Initializer
 		"""
 		super().__init__(host, port)
 		self.__is_running = False
+		self.__config = config
 		self.__server = {}
 		self.__server['thread'] = None
 		self.__server['object'] = None
@@ -130,22 +89,22 @@ class PyRFT_Server(PyRFTConnection):
 		"""
 		Start the server actively listening on the address specified by host:port
 
-		Throws PyRFT_Server_InvalidState if the server is already running.
+		Throws PyRFTServerInvalidState if the server is already running.
 		"""
 		if not self.isRunning:
-			self.__server['object'] = __threaded_tcp_server(host, port), PyRFT_TCPServer_Handler)
+			self.__server['object'] = __threaded_tcp_server((host, port), PyRFTServerHandler)
 			self.__server['thread'] = threading.Thread(target=server.serve_forever)
 			self.__server['thread'].daemon = True
 			self.__server['thread'].start()
 			self.__is_running = True
 		else:
-			raise PyRFT_Server_InvalidState('Server is ALREADY running.')
+			raise PyRFTServerInvalidState('Server is ALREADY running.')
 
 	def stop(self):
 		"""
 		Stop the server and release the resources.
 
-		Throws PyRFT_Server_InvalidState if the server is not running.
+		Throws PyRFTServerInvalidState if the server is not running.
 		"""
 		if self.isRunning:
 			# shutdown returns when the server has fully shutdown.So it's safe to delete it.
@@ -156,14 +115,30 @@ class PyRFT_Server(PyRFTConnection):
 			self.__server['thread'] = None
 			self.__server['object'] = None
 		else:
-			raise PyRFT_Server_InvalidState('Server is NOT running.')
+			raise PyRFTServerInvalidState('Server is NOT running.')
 
 
-def pyrft_server(host='localhost', port='9000'):
+class PyRFTServerHandler(socketserver.StreamRequestHandler):
 	"""
-	Create a PyRFT Server and start it
 	"""
-	server = PyRFT_Server(host=host, port=port)
-	server.start()
-	return server
+
+	def handle(self):
+		"""
+		"""
+		pass
+
+	def write_message(self, message):
+		"""
+		"""
+		pass
+
+	def read_message(self):
+		"""
+		"""
+		pass
+
+	def client_loop(self):
+		"""
+		"""
+		pass
 

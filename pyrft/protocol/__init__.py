@@ -16,23 +16,36 @@ limitations under the License.
 
 """
 
-from .server import PyRFTServer, PyRFTServerConfig
-from .client import PyRFTClient, PyRFTClientConfig
+"""
+TODO:
 
-__default_port = 9000
+Authenticate
 
-def create_server(host='localhost', port=__default_port, config=PyRFTServerConfig):
-	"""
-	Create a PyRFT Server Instance and start listening for clients
-	"""
-	server = PyRFTServer(host=host, port=port)
-	server.start()
-	return server
+GetOptions
+	- Max Connections per Client
+	- Max Bandwidth per Transfer
+	- Max Bandwidth per Client
 
-def create_client(host='localhost', port=__default_port, config=PyRFTClientConfig):
-	"""
-	Create a PyRFT Client Instance and connect to the server
-	"""
-	client = PyRFTClient(host=host, port=port)
-	client.connect()
-	return client
+NegotiateOptions
+	- Max Connections per Client
+	- Max Bandwidth per Transfer
+	- Max Bandwidth per Client
+
+
+List Directory
+Get Directory Information
+Create Directory
+Rename Directory
+Delete Directory
+
+Get File Information
+Rename File
+Delete File
+
+Upload File
+
+Download File
+
+"""
+
+
