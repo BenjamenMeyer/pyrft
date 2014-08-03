@@ -46,11 +46,11 @@ def test_server_data_client():
     from pyrft import create_server, create_client
     from pyrft.client import PyRFTTransferDataClient
     from pyrft.server import PyRFTServerHandler
-    server = create_server(host='127.0.0.3', port=9020)
+    server = create_server(host='127.0.0.4', port=9030)
 
     assert server.isRunning
 
-    client = PyRFTTransferDataClient(host='127.0.0.3', port=9020)
+    client = PyRFTTransferDataClient(host='127.0.0.4', port=9030)
 
     assert not client.isActive
 
@@ -72,11 +72,11 @@ def test_server_admin():
     from pyrft import create_server, create_admin_client
     from pyrft.client import PyRFTAdminClient
     from pyrft.server import PyRFTServerHandler
-    server = create_server(host='127.0.0.4', port=9030)
+    server = create_server(host='127.0.0.5', port=9040)
 
     assert server.isRunning
 
-    client = create_admin_client(host='127.0.0.4', port=9030)
+    client = create_admin_client(host='127.0.0.5', port=9040)
 
     assert isinstance(client, PyRFTAdminClient)
 
