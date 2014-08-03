@@ -20,32 +20,39 @@ limitations under the License.
 TODO:
 
 Authenticate
+    - Normal Client
+    - Administrative Client
+    - Replication Client
 
 GetOptions
-	- Max Connections per Client
-	- Max Bandwidth per Transfer
-	- Max Bandwidth per Client
+    - Max Connections per Client
+    - Max Bandwidth per Transfer
+    - Max Bandwidth per Client
+
+SetOptions (Administrative Connection)
+    - See Get Options
+    - User Group that users must belong to for the Normal Client
+    - Admin User Group that administrive users must belong to for the Administrative Client
+    - User Management (when doing more than just allowing the local system to manage them)
 
 NegotiateOptions
-	- Max Connections per Client
-	- Max Bandwidth per Transfer
-	- Max Bandwidth per Client
+    - Max Connections per Client
+    - Max Bandwidth per Transfer
+    - Max Bandwidth per Client
 
+Directory Functionality
+    - List
+    - Get Information
+    - Set Information
+    - Create
+    - Rename
+    - Delete (recursive? y/n)
 
-List Directory
-Get Directory Information
-Create Directory
-Rename Directory
-Delete Directory
-
-Get File Information
-Rename File
-Delete File
-
-Upload File
-
-Download File
-
+File Functionality
+    - Get Information
+    - Set Information
+    - Rename
+    - Delete
+    - Upload
+    - Download
 """
-
-

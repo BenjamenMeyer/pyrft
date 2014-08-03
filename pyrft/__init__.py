@@ -17,22 +17,36 @@ limitations under the License.
 """
 
 from .server import PyRFTServer, PyRFTServerConfig
-from .client import PyRFTClient, PyRFTClientConfig
+from .client import PyRFTTransferClient, PyRFTAdminClient, PyRFTClientConfig
 
 __default_port = 9000
 
-def create_server(host='localhost', port=__default_port, config=PyRFTServerConfig):
-	"""
-	Create a PyRFT Server Instance and start listening for clients
-	"""
-	server = PyRFTServer(host=host, port=port)
-	server.start()
-	return server
 
-def create_client(host='localhost', port=__default_port, config=PyRFTClientConfig):
-	"""
-	Create a PyRFT Client Instance and connect to the server
-	"""
-	client = PyRFTClient(host=host, port=port)
-	client.connect()
-	return client
+def create_server(host='localhost', port=__default_port,
+        config=PyRFTServerConfig):
+    """
+    Create a PyRFT Server Instance and start listening for clients
+    """
+    server = PyRFTServer(host=host, port=port, config=config)
+    server.start()
+    return server
+
+
+def create_client(host='localhost', port=__default_port,
+        config=PyRFTClientConfig):
+    """
+    Create a PyRFT Client Instance and connect to the server
+    """
+    client = PyRFTTransferClient(host=host, port=port, config=config)
+    client.connect()
+    return client
+
+
+def create_admin_client(host='localhost', port=__default_port):
+    """
+    Create a PyRFT Administrative Client Instance and connect to the server
+    """
+    import uuid
+    admin_client = PyRFTAdminClient(host=host, port=port, controller_id=uuid.uuid4())
+    admin_client.connect()
+    return admin_client

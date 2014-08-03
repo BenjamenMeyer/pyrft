@@ -16,46 +16,47 @@ limitations under the License.
 
 """
 
+
 class PyRFTConnectionInvalidState(Exception):
-	pass
+    pass
 
 
 class PyRFTConnection(object):
-	"""
-	Basic Connection Object for Client and Server
+    """
+    Basic Connection Object for Client and Server
 
-	For derived clients, this contains the server information to connect to.
-	For derived servers, this contains the server information to bind to.
-	"""
+    For derived clients, this contains the server information to connect to.
+    For derived servers, this contains the server information to bind to.
+    """
 
-	def __init__(self, host, port):
-		"""
-		Initializer for the connection
-		"""
-		self.__host = host
-		self.__port = port
-	
-	@property
-	def host(self):
-		"""
-		Host Address for the connection
-		"""
-		return self.__host
+    def __init__(self, host, port):
+        """
+        Initializer for the connection
+        """
+        self.__host = host
+        self.__port = port
 
-	@host.setter
-	def host(self, host_address):
-		self.__host = host_address
+    @property
+    def host(self):
+        """
+        Host Address for the connection
+        """
+        return self.__host
 
-	@property
-	def port(self):
-		"""
-		Port for the connection
-		"""
-		return self.__port
+    @host.setter
+    def host(self, host_address):
+        self.__host = host_address
 
-	@port.setter
-	def port(self, port_number):
-		"""
-		Set the Port for the connection
-		"""
-		self.__port = port_number
+    @property
+    def port(self):
+        """
+        Port for the connection
+        """
+        return self.__port
+
+    @port.setter
+    def port(self, port_number):
+        """
+        Set the Port for the connection
+        """
+        self.__port = port_number

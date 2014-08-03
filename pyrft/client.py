@@ -18,86 +18,141 @@ limitations under the License.
 
 
 import socket
+from abc import abstractmethod
 
 from .comms import PyRFTConnection, PyRFTConnectionInvalidState
 from .config import PyRFTConfig
 
 
 class PyRFTClientInvalidState(PyRFTConnectionInvalidState):
-	pass
+    pass
 
 
 class PyRFTClientConfig(PyRFTConfig):
-	"""
-	"""
-	
-	def __init__(self):
-		super().__init__()
-	
-	def negotiate(self, other):
-		settle = super().negotiate(other)
-		return settle
+    """
+    """
+
+    def __init__(self):
+        super().__init__()
+
+    def negotiate(self, other):
+        settle = super().negotiate(other)
+        return settle
 
 
 class PyRFTClient(PyRFTConnection):
-	"""
-	PyRFT Client Interface
+    """
+    PyRFT Client Interface
 
-	Wrapper around the client instance to enable easy management.
+    Wrapper around the client instance to enable easy management.
 
-	Client connects to the specified host/port.
-	"""
+    Client connects to the specified host/port.
+    """
 
-	def __init__(self, host, port, config=PyRFTClientConfig):
-		"""
-		Initializer
-		"""
-		super().__init__(host, port)
-		self.__config = config
-		self.__is_active = False
-		self.__client = {}
-		self.__client['socket'] = None
-	
-	@property
-	def isActive(self):
-		"""
-		Determine the client status
+    def __init__(self, host, port):
+        """
+        Initializer
+        """
+        super().__init__(host, port)
+        self.__is_active = False
+        self.__client = {}
+        self.__client['socket'] = None
 
-		Returns True if the client is connected to a server.
-		Returns False if the client is disconnected.
-		"""
-		return (self.__is_active is True)
-	
-	def connect(self, host=None, port=None):
-		"""
-		Connect to the specified server
+    def authenticate(credentials):
+        pass
 
-		Throws PyRFTClientInvalidState if already connected
-		"""
-		if not self.isActive:
+    @property
+    @abstractmethod
+    def connectionType(self):
+        pass
 
-			if host is not None:
-				self.host = host
+    @property
+    def isActive(self):
+        """
+        Determine the client status
 
-			if port is not None:
-				self.port = port
+        Returns True if the client is connected to a server.
+        Returns False if the client is disconnected.
+        """
+        return (self.__is_active is True)
 
-			self.__client['socket'] = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-			self.__client['socket'].connect((self.host, self.port))
+    def connect(self, host=None, port=None):
+        """
+        Connect to the specified server
 
-		else:
-			raise PyRFTClientInvalidState('Already connected.')
-	
-	def disconnect(self):
-		"""
-		Disconnects from the server
+        Throws PyRFTClientInvalidState if already connected
+        """
+        if not self.isActive:
 
-		Throws PyRFTClientConnection if not connected
-		"""
-		if self.isActive:
-			self.__client['socket'].close()
-			del self.__client['socket']
-			self.__client['socket'] = None
+            if host is not None:
+                self.host = host
 
-		else:
-			raise PyRFTClientConnection('Not connected.')
+            if port is not None:
+                self.port = port
+
+            self.__client['socket'] = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            self.__client['socket'].connect((self.host, self.port))
+            self.__is_active = True
+
+        else:
+            raise PyRFTClientInvalidState('Already connected.')
+
+    def disconnect(self):
+        """
+        Disconnects from the server
+
+        Throws PyRFTClientConnection if not connected
+        """
+        if self.isActive:
+            self.__client['socket'].close()
+            del self.__client['socket']
+            self.__client['socket'] = None
+            self.__is_active = False
+
+        else:
+            raise PyRFTClientConnection('Not connected.')
+
+
+class PyRFTTransferClient(PyRFTClient):
+    """
+    PyRFT Transfer Client - Controller
+    """
+
+    def __init__(self, host, port, config=PyRFTClientConfig):
+        super().__init__(host, port)
+        self.__config = config
+
+    @property
+    def connectionType(self):
+        from .server import PyRFTServerHandler
+        return PyRFTServerHandler.CONNECTION_TYPE_CONTROLLER
+
+
+class PyRFTTransferDataClient(PyRFTClient):
+    """
+    PyRFT Tranfser Client - Data Connection
+    """
+
+    def __init__(self, host, port, config=PyRFTClientConfig):
+        super().__init__(host, port)
+        self.__config = config
+
+    @property
+    def connectionType(self):
+        from .server import PyRFTServerHandler
+        return PyRFTServerHandler.CONNECTION_TYPE_WORKER
+
+
+class PyRFTAdminClient(PyRFTClient):
+    """
+    PyRFT Administrator Client
+    """
+
+    def __init__(self, host, port, controller_id):
+        super().__init__(host, port)
+        self.__controller = controller_id
+
+    @property
+    def connectionType(self):
+        from .server import PyRFTServerHandler
+        return PyRFTServerHandler.CONNECTION_TYPE_ADMINISTATOR
