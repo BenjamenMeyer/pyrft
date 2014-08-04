@@ -22,6 +22,10 @@ class PyRFTConfig(object):
     """
     UNLIMITED = -1
 
+    # Maximum Connections (Server-Side)
+    MAX_CONNECTIONS = 'maximumConnections'
+    MAX_CONNECTIONS_DEFAULT = 2000
+
     # Maximum Number of Data Transfer Connections
     MAX_DATA_CONNECTIONS = 'maximumDataConnections'
     MAX_DATA_CONNECTIONS_DEFAULT = 10
@@ -35,9 +39,10 @@ class PyRFTConfig(object):
     MAX_BANDWIDTH_USAGE_PER_TRANSFER_DEFAULT = UNLIMITED
 
     def __init__(self):
+        self.__setattr__(PyRFTConfig.MAX_CONNECTIONS, PyRFTConfig.MAX_CONNECTIONS_DEFAULT)
         self.__setattr__(PyRFTConfig.MAX_DATA_CONNECTIONS, PyRFTConfig.MAX_DATA_CONNECTIONS_DEFAULT)
         self.__setattr__(PyRFTConfig.MAX_BANDWIDTH_USAGE, PyRFTConfig.MAX_BANDWIDTH_USAGE_DEFAULT)
-        self.__setattr__(PyRFTConfig.AX_BANDWIDTH_USAGE_PER_TRANSFER, PyRFTConfig.MAX_BANDWIDTH_USAGE_PER_TRANSFER_DEFAULT)
+        self.__setattr__(PyRFTConfig.MAX_BANDWIDTH_USAGE_PER_TRANSFER, PyRFTConfig.MAX_BANDWIDTH_USAGE_PER_TRANSFER_DEFAULT)
 
     def enforce(self):
         self.maximumBandwidthPerTransfer = max(self.maximumBandwidthPerTransfer, self.maximuBandwidthUsage)
@@ -56,11 +61,11 @@ class PyRFTConfig(object):
         settle = PyRFTConfig()
 
         # Max # of Data Transfer Connections
-        settle.maximumDataConnections = __negotiate_unlimited(self.maximumDataConnections, other.maximumDataConnections)
+        settle.maximumDataConnections = PyRFTConfig.negotiate_unlimited(self.maximumDataConnections, other.maximumDataConnections)
 
         #
         settle.maximumConnections = min(self.maximumConnections, other.maximumConnections)
-        settle.maximumBandwidthUsage = __negotiate_unlimited(self.maximumBandwidthUsage, other.maximumBandwidthUsage)
-        settle.maximumBandwidthPerTransfer = __negotiate_unlimited(self.maximumBandwidthPerTransfer, other.maximumBandwidthPerTransfer)
+        settle.maximumBandwidthUsage = PyRFTConfig.negotiate_unlimited(self.maximumBandwidthUsage, other.maximumBandwidthUsage)
+        settle.maximumBandwidthPerTransfer = PyRFTConfig.negotiate_unlimited(self.maximumBandwidthPerTransfer, other.maximumBandwidthPerTransfer)
 
         return settle
