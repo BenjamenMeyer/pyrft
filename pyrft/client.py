@@ -28,6 +28,9 @@ class PyRFTClientInvalidState(PyRFTConnectionInvalidState):
     pass
 
 
+class PyRFTInvalidConnectionParameters(Exception):
+	pass
+
 class PyRFTClientConfig(PyRFTConfig):
     """
     """

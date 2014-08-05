@@ -1,0 +1,7 @@
+nose
+coverage
+testtools
+testfixtures
+setuptools>=1.1.6
+pep8
+

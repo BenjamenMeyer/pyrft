@@ -15,9 +15,9 @@ to be provided as at least refernce applications.
 setup(name='PyRFT',
       version='1.0',
       author='Benjamen R. Meyer',
-      author_email='bm_witness@yahoo.com',
+      author_email='bmeyer@clockwerkssoftware.net',
       maintainer='Benjamen R. Meyer',
-      maintainer_email='bm_witness@yahoo.com',
+      maintainer_email='bmeyer@clockwerkssoftware.net',
       description='Python Reliable File Transfer',
       long_description=long_description,
       classifiers=['Development Status :: 4 - Beta',
@@ -44,10 +44,14 @@ setup(name='PyRFT',
       packages=['pyrft'],
       # package_dir={'pyrft': 'pyrft'},
       package_data={'conf': ['configs'],
-                    'scripst': ['scrips']
+                    'scripts': ['scripts']
                     },
-      setup_requires=['nose>=1.3',
-                      'nose-cover3>=0.1.0',
-                      'coverage>=3.7.1'
-                      ]
+      setup_requires=[
+       'nose',
+       'coverage',
+       'testtools',
+       'testfixtures',
+       'setuptools>=1.1.6',
+       'pep8'
+       ]
       )
