@@ -59,12 +59,12 @@ class PyRFTClient(PyRFTConnection):
         self.__client['socket'] = None
 
     def authenticate(credentials):
-        pass
+        raise NotImplementedError
 
     @property
     @abstractmethod
     def connectionType(self):
-        pass
+        raise NotImplementedError
 
     @property
     def isActive(self):
