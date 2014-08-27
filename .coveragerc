@@ -1,7 +1,7 @@
 [report]
-exclude_lines =	
-	pragma: no cover
-	raise NotImplementedError
+exclude_lines =
+    pragma: no cover
+    raise NotImplementedError
 
 [run]
 omit = *tests*

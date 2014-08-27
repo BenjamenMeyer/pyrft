@@ -1,6 +1,13 @@
-#!/usr/bin/env python
+# -*- coding: utf-8 -*-*
 
-from setuptools import setup
+try:
+    from distutils.core import setup
+except ImportError:
+    from ez_setup import use_setuptools
+    use_setuptools()
+    from setuptools import setup
+finally:
+    from setuptools import find_packages
 
 long_description = """PyRTF is an FTP replacement with the ability to do fast,
 reliable file transfer operations. It may be used as an
@@ -9,15 +16,31 @@ client (pyrft) and server (pyrftd) applications, both
 to be provided as at least refernce applications.
 """
 
-# TODO: Add url = github repository
+REQUIRES = [
+]
+
+TEST_REQUIRES = [
+    'coverage',
+    'ddt',
+    'mock',
+    'nose',
+    'nose-exclude',
+    'pep8',
+    'setuptools>=1.1.6',
+    'testtools',
+    'testfixtures',
+]
+
+
 # TODO: Add download_url = github repository
 # TODO: Add install_requires=[]
 setup(name='PyRFT',
-      version='1.0',
-      author='Benjamen R. Meyer',
-      author_email='bm_witness@yahoo.com',
+      version='0.1',
+      url='github.com/ClockwerksSoftware/pyrft',
+      author='Clockwerks Software, LLC',
+      author_email='bmeyer@clockwerkssoftware.net',
       maintainer='Benjamen R. Meyer',
-      maintainer_email='bm_witness@yahoo.com',
+      maintainer_email='bmeyer@clockwerkssoftware.net',
       description='Python Reliable File Transfer',
       long_description=long_description,
       classifiers=['Development Status :: 4 - Beta',
@@ -35,19 +58,12 @@ setup(name='PyRFT',
                    'Topic :: Programming :: Python',
                    'Topic :: API :: JSON'
                    ],
-      scripts=['bin/pyrft',
-               'bin/pyrft-config',
-               'sbin/pyrftd',
-               'sbin/pyrftd-config',
-               ],
-      # py_modules=['pyrft'],
-      packages=['pyrft'],
-      # package_dir={'pyrft': 'pyrft'},
-      package_data={'conf': ['configs'],
-                    'scripst': ['scrips']
-                    },
-      setup_requires=['nose>=1.3',
-                      'nose-cover3>=0.1.0',
-                      'coverage>=3.7.1'
-                      ]
+      zip_safe=False,
+      packages=find_packages(exclude=['tests']),
+      include_package_data=True,
+
+      install_requires=REQUIRES,
+
+      tests_require=TEST_REQUIRES,
+      test_suite='pyrft',
       )
