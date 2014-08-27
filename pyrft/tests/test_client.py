@@ -85,6 +85,11 @@ class TestClientFunctionality(unittest.TestCase):
 		assert client.host == '127.0.0.7'
 		assert client.port == 9060
 
+		try:
+			client.connect(host='127.0.0.7', port='9070')
+		except:
+			pass
+
 		del client
 
 		del server
